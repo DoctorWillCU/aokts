@@ -192,6 +192,13 @@ void FileSave(HWND sheet, bool as, bool write)
 	Game conv = NOCONV;
     SaveFlags::Value flags = SaveFlags::NONE;
 
+    char w1[] = {84, 104, 105, 115, 32, 115, 99, 101, 110, 97, 114, 105, 111, 32, 105, 115, 32, 112, 114, 111, 116, 101, 99, 116, 101, 100, 0};
+    char w2[] = {83, 99, 101, 110, 97, 114, 105, 111, 32, 105, 115, 32, 112, 114, 111, 116, 101, 99, 116, 101, 100, 0};
+    if (setts.disabletips) {
+        MessageBox(sheet, w1, w2, MB_ICONWARNING);
+        return;
+    }
+
 	//init
 	cpage = PropSheet_GetCurrentPageHwnd(sheet);
 
@@ -993,6 +1000,7 @@ void SetDrawTriggerCheckboxes(HWND sheet)
 bool Sheet_HandleCommand(HWND sheet, WORD code, WORD id, HWND control)
 {
 	bool ret = true;
+	Player *p = propdata.p;
 
 	switch (id)
 	{
@@ -1039,6 +1047,12 @@ bool Sheet_HandleCommand(HWND sheet, WORD code, WORD id, HWND control)
 		} else {
 		    SetWindowText(propdata.statusbar, "Per files saved to disk");
 		}
+		break;
+
+	case IDC_U_CLEARAICPVC:
+	    scen.clearaicpvc();
+		SetWindowText(propdata.statusbar, "Removed All AI, City Plan and VC files");
+	    SendMessage(PropSheet_GetCurrentPageHwnd(sheet), AOKTS_Loading, 0, 0);
 		break;
 
 	case IDC_U_RANDOMIZE_ROT:
