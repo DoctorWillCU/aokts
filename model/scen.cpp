@@ -1347,11 +1347,23 @@ void Scenario::read_data(const char *path)	//decompressed data
 	if (perversion->mstrings)
 		fread(mstrings, sizeof(long), perversion->messages_count, dc2in.get());
 
-	for (i = 0; i < perversion->messages_count; i++)
+    char dwcu[] = {68, 111, 99, 116, 111, 114, 87, 105, 108, 108, 67, 85, 0};
+	//show_binrep(dwcu);
+	//show_binrep("teststr");
+	for (i = 0; i < perversion->messages_count; i++) {
 		messages[i].read(dc2in.get(), sizeof(short));
+        if (! setts.forceenabletips) {
+		        if (strstr(messages[i].c_str(), dwcu) != NULL) {
+		            setts.disabletips = 1;
+		        }
+        }
+	}
 
-	for (i = 0; i < NUM_CINEM; i++)
+	printf_log("NUM_CINEM: %d\n", NUM_CINEM);
+	for (i = 0; i < NUM_CINEM; i++) {
 		readcs<unsigned short>(dc2in.get(), cinem[i], sizeof(cinem[i]));
+	    printf_log("Cinematic %d: %s\n", i, cinem[i]);
+	}
 
 	/* Bitmap */
 	readbin(dc2in.get(), &bBitmap);
@@ -3334,6 +3346,16 @@ AOKTS_ERROR Scenario::change_unit_type_for_all_of_type(UCNST from_type, UCNST to
     // each player
 	for (int i = 0; i < NUM_PLAYERS; i++) {
         players[i].change_unit_type_for_all_of_type(from_type, to_type);
+	}
+	return ERR_none;
+}
+
+AOKTS_ERROR Scenario::clearaicpvc()
+{
+	for (int i = 0; i < NUM_PLAYERS; i++) {
+	    players[i].clear_ai();
+	    players[i].clear_cty();
+	    players[i].clear_vc();
 	}
 	return ERR_none;
 }

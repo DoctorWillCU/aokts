@@ -250,7 +250,7 @@ public:
 	char	origname[_MAX_FNAME];
 	long	mstrings[NUM_MSGS];
 	SString messages[NUM_MSGS];
-	char	cinem[NUM_CINEM][0x20];	//pre-game, victory, lose, bkg
+	char	cinem[NUM_CINEM][0x40];	//pre-game, victory, lose, bkg 0x20 = 32
 	long	bBitmap;
 	AOKBMP bitmap;
 	Player players[NUM_PLAYERS];
@@ -393,6 +393,7 @@ public:
     AOKTS_ERROR set_number_active_players(int num);
     AOKTS_ERROR set_unit_z_to_map_elev();
     AOKTS_ERROR change_unit_type_for_all_of_type(UCNST from_type, UCNST to_type);
+    AOKTS_ERROR clearaicpvc();
     AOKTS_ERROR randomize_unit_frames();
     AOKTS_ERROR randomize_unit_frames(const unsigned int cnst);
     AOKTS_ERROR map_duplicate(const RECT &from, const POINT &to, OpFlags::Value flags=OpFlags::ALL);
