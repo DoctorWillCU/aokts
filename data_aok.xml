@@ -23,9 +23,9 @@ ID "109 - Town Center" = AoK Town Center
 ID "621 - Town Center1X" = AoC-AoFE-AoAK Town Center
 Town Center 2,3,4 & X,A,B,C were (REV) Reverse Value, they can affect to specific player.
 Be careful of using them and Avoiding to put them into "Disable" section in general use.
-This will be research more deatil and update in furture.
+This will be study for more deatil.
 
-Updated by DoctorWillCU, 19/02/16.
+Updated by DoctorWillCU, 19 February 2016.
 -->
 
 <techs>
@@ -2124,8 +2124,8 @@ usual.
 <terrain id="21" color="258625" name="Snow Pine Forest" />
 <terrain id="22" color="003587" name="Water, Deep" />
 <terrain id="23" color="0054B0" name="Water, Medium" />
-<terrain id="24" color="c0b0b0" name="Road" />
-<terrain id="25" color="c0a5a0" name="Road, Broken" />
+<terrain id="24" color="e09545" name="Road" />
+<terrain id="25" color="d49242" name="Road, Broken" />
 <terrain id="26" color="BDD1FD" name="Ice (no ships)" />
 <terrain id="27" color="d59545" name="Dirt 2 (no beach, building residue, dockable)" />
 <terrain id="28" color="905db6" name="Water, Bridge (walkable, no ships)" />
